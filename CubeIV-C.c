@@ -1,5 +1,5 @@
 /*****************************************
-* NombrePrograma: CubeIV.cpp
+* NombrePrograma: CubeIV-C.c
 * Descripcion: http://code.google.com/codejam/contest/6214486/dashboard#s=p0
 *
 * Autor: Heber Quequejana
@@ -7,7 +7,10 @@
 *
 ****************************************/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
 
 using namespace std;
 
@@ -16,7 +19,8 @@ int main(){
    int ***input;
    int **output;
    int m = 0;
-   cin>>ncases;
+   // printf("Cantidad de casos: ");
+   scanf("%d",&ncases);
    /// creacion de la estructura general
    input = (int***) malloc(ncases * sizeof(int **));
    output = (int**) malloc(ncases * sizeof(int*));
@@ -27,7 +31,8 @@ int main(){
       int S;
       int pos = 0;
       int maxRooms = 0;
-      cin>>S;
+      // printf("S: ");
+      scanf("%d",&S);
       /// estructura interna
       for(int i = 0; i < ncases; i++){
          input[i] = (int**) malloc(S * sizeof(int*));
@@ -38,7 +43,8 @@ int main(){
       /// lectura
       for(int i = 0; i < S; i++){
          for(int j = 0; j < S; j++){
-            cin>>input[m][i][j];
+            // printf("pos[%d][%d] = ",i,j);
+            scanf("%d",&input[m][i][j]);
          }
       }
       /// buscar caminos
@@ -77,11 +83,11 @@ int main(){
       m++;
    };
    /// output
-   cout<<endl;
+   printf("\n");
    for(int i = 0; i < ncases; i++){
       printf("Case #%d: %d %d\n",(i + 1), output[i][0], output[i][1]);
    }
-   cout<<endl;
+   printf("\n");
    system("pause");
    return 0;
 }
