@@ -19,7 +19,7 @@ int main(){
    int ***input;
    int **output;
    int m = 0;
-   // printf("Cantidad de casos: ");
+   // cantidad de casos
    scanf("%d",&ncases);
    /// creacion de la estructura general
    input = (int***) malloc(ncases * sizeof(int **));
@@ -27,11 +27,11 @@ int main(){
    for(int i = 0; i < ncases; i++)
       output[i] = (int*) malloc(2 * sizeof(int));
    // input
-   while(m < ncases){
+   for(int m = 0; m < ncases; m++){
       int S;
       int pos = 0;
       int maxRooms = 0;
-      // printf("S: ");
+      // lado de la matriz
       scanf("%d",&S);
       /// estructura interna
       for(int i = 0; i < ncases; i++){
@@ -43,7 +43,7 @@ int main(){
       /// lectura
       for(int i = 0; i < S; i++){
          for(int j = 0; j < S; j++){
-            // printf("pos[%d][%d] = ",i,j);
+            // lectura de la matriz
             scanf("%d",&input[m][i][j]);
          }
       }
@@ -80,8 +80,7 @@ int main(){
       }
       output[m][0] = pos;
       output[m][1] = maxRooms;
-      m++;
-   };
+   }
    /// output
    printf("\n");
    for(int i = 0; i < ncases; i++){
