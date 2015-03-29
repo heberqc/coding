@@ -15,7 +15,6 @@ int main(){
    int ncases;
    int ***input;
    int **output;
-   int m = 0;
    cin>>ncases;
    /// creacion de la estructura general
    input = (int***) malloc(ncases * sizeof(int **));
@@ -23,10 +22,11 @@ int main(){
    for(int i = 0; i < ncases; i++)
       output[i] = (int*) malloc(2 * sizeof(int));
    // input
-   while(m < ncases){
+   for (int m = 0; m < ncases; m++){
       int S;
       int pos = 0;
       int maxRooms = 0;
+      // lado de la matriz
       cin>>S;
       /// estructura interna
       for(int i = 0; i < ncases; i++){
@@ -74,12 +74,11 @@ int main(){
       }
       output[m][0] = pos;
       output[m][1] = maxRooms;
-      m++;
-   };
+   }
    /// output
    cout<<endl;
    for(int i = 0; i < ncases; i++){
-      printf("Case #%d: %d %d\n",(i + 1), output[i][0], output[i][1]);
+      cout<<"case #"<<(i+1)<<": "<<output[i][0]<<" "<<output[i][1]<<endl;
    }
    cout<<endl;
    system("pause");
