@@ -43,23 +43,12 @@ int main(){
 		}
 		// preparar el campo
 		install_mines(grid,n,R,C,M);
-		showMatrix(grid,n,R,C);
-		// for (int r = 0; r < R; r++){
-		// 	for (int c = 0; c < C; c++){
-		// 		if(grid[n][r][c] != '*'){
-		// 			// grid[n][r][c] = (char) n_mines(grid, R, C, n, r, c) + 48;
-		// 			grid[n][r][c] = '.';
-		// 		}
-		// 	}
-		// }
+		// showMatrix(grid,n,R,C);
 		// grid[n][0][0] = 'c';
 		// resolver
 		for (int j = 0; j < R ; j++){
 			for (int i = 0; i < C; i++){
-				// if(grid[n][j][i] == '.' && n_mines(grid,R,C,n,j,i) == 0){
-				// 	grid[n][j][i]
-				// }
-				if (grid[n][j][i] != '*' && (
+				if (grid[n][j][i] == '.' && (
 					i > 0 && n_mines(grid, R, C, n, j, i-1) == 0 || 
 					i > 0 && j > 0 && n_mines(grid,R,C,n,j-1,i-1) == 0 ||
 					j > 0 && n_mines(grid, R, C, n,j-1,i) == 0 ||
@@ -88,12 +77,14 @@ void install_mines(char ***G, int T, int R, int C, int M){
 	int cant = 0;
 	int c = 0, r = 0;
 	int n = 0;
-	while(r < R && c < C){
-		if(cant < S){
-			G[T][r][c] = '.';
-			cant++;
-		}else{
-			G[T][r][c] = '*';
+	while(r < R || c < C){
+		if (r < R && c < C){
+			if(cant < M){
+				G[T][r][c] = '*';
+				cant++;
+			}else{
+				G[T][r][c] = '.';
+			}
 		}
 		if(r == n && c == n){
 			c++;
