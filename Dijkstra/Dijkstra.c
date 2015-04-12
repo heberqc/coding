@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <conio.h>
 
-char quaternion(char a, char b);
+char quaternions(char a, char b);
 int value(char c);
 bool possible(char *I, int LX);
 
@@ -20,7 +20,6 @@ int main(){
 	int T;
 	int *O;
 	int L, X;
-	int LT;
 	char *S;
 	char *I;
 	// input
@@ -30,15 +29,17 @@ int main(){
 		O[t] = 0;
 		scanf("%d%d",&L,&X);
 		int LX = L * X;
-		S = (char*) malloc(L * sizeof(char));
-		I = (char*) malloc(LX * sizeof(char));
+		S = (char*) malloc((L+1) * sizeof(char));
+		I = (char*) malloc((LX+1) * sizeof(char));
 		scanf("%s",S);
 		for (int x = 0; x < X; x++){
 			for (int l = 0; l < L; l++){
 				I[x * L + l] = S[l];
 			}
 		}
-		// proceso
+		I[LX] = '\0';
+		printf("%s\n", I);
+		// process
 		if(possible(I,LX)){
 			O[t] = 1;
 		}
@@ -51,7 +52,7 @@ int main(){
 	return 0;
 }
 
-char quaternion(char a, char b){
+char quaternions(char a, char b){
 	char Q[8][8] = {
 			{'u','i','j','k','n','x','y','z'},
 			{'i','n','k','y','x','u','z','j'},
@@ -89,37 +90,27 @@ int value(char c){
 }
 
 bool possible(char *I, int LX){
-	int m = 1;
-	int n = 2;
-	while(m < LX-1 && n < LX){
-		n = m + 1;
-		char aux_i = 'u';
-		char aux_j = 'u';
-		char aux_k = 'u';
-		for (int a = 0; a < m; a++){
-			aux_i = quaternion(aux_i,I[a]);
-		}
-		printf("aux_i: %c\n", aux_i);
+	char aux_i, aux_j, aux_k;
+	aux_i = 'u';
+	for (int b1 = 1; b1 < (LX-1); b1++){
+		aux_i = quaternions(aux_i,I[b1-1]);
 		if(aux_i == 'i'){
-			for (int b = m; b < n; b++){
-				aux_j = quaternion(aux_j,I[b]);
-			}
-			printf("aux_j: %c\n", aux_j);
-			if(aux_j == 'j'){
-				for (int c = n; c < LX; c++){
-					aux_k = quaternion(aux_k,I[c]);
+			aux_j = 'u';
+			for (int b2 = (b1+1); b2 < LX; b2++){
+				aux_j = quaternions(aux_j,I[b2-1]);
+				if(aux_j == 'j'){
+					aux_k = 'u';
+					for (int i = b2; i < LX; i++){
+						aux_k = quaternions(aux_k,I[i]);
+					}
+					// printf("aux_i: %c - aux_j: %c - aux_k: %c\n", aux_i, aux_j, aux_k);
+					if(aux_k == 'k'){
+						// printf("B1: %d - B2: %d\n", b1, b2);
+						return true;
+					}
 				}
-				printf("aux_k: %c\n", aux_k);
-				if(aux_k == 'k'){
-					return true;
-				}
 			}
-		}else{
-			m++;
 		}
-		printf("M: %d - N: %d\n", m,n);
-		// n++;
-		// m++;
 	}
 	return false;
 }
