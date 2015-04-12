@@ -23,8 +23,8 @@ int main(){
 	for(int t = 0; t<T; t++){
 		R[t] = 0;
 		scanf("%d",&SM);
-		S = (int*) malloc(1000*sizeof(int));
-		char *dig = (char*) malloc(1000*sizeof(int));
+		S = (int*) malloc(1001*sizeof(int));
+		char *dig = (char*) malloc(1001*sizeof(char));
 		scanf("%s",dig);
 		for(int i=0; i<= SM; i++){
 			S[i] = dig[i] - 48;
