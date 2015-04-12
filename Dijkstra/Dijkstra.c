@@ -25,13 +25,13 @@ int main(){
 	char *I;
 	// input
 	scanf("%d", &T);
-	O = (int *) malloc(100 * sizeof(int));
+	O = (int *) malloc(T * sizeof(int));
 	for (int t = 0; t < T; t++){
 		O[t] = 0;
 		scanf("%d%d",&L,&X);
 		int LX = L * X;
-		S = (char*) malloc(10000 * sizeof(char));
-		I = (char*) malloc(10000 * sizeof(short));
+		S = (char*) malloc(L * sizeof(char));
+		I = (char*) malloc(LX * sizeof(char));
 		scanf("%s",S);
 		for (int x = 0; x < X; x++){
 			for (int l = 0; l < L; l++){
