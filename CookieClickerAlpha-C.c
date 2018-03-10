@@ -7,10 +7,8 @@
 *
 ****************************************/
 
-#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 
 #define MAX_FARMS 100
 
@@ -29,7 +27,7 @@ int main(){
 		int farms = 0;
 		double ans = 0;
 		double ratio = 2.0;
-		bool done = false;
+		int done = 0;
 		// calcular
 		while(!done && farms < MAX_FARMS){
 			double aux1 = X/ratio;
@@ -41,7 +39,7 @@ int main(){
 				ratio += F;
 			} else {
 				ans += aux1;
-				done = true;
+				done = 1;
 				output[n] = ans;
 			}
 		}
@@ -52,6 +50,5 @@ int main(){
 		printf("Case #%d: %-.7f\n", (i+1), output[i]);
 	}
 	printf("\n");
-	system("pause");
 	return 0;
 }

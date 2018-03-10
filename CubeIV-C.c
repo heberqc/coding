@@ -7,10 +7,8 @@
 *
 ****************************************/
 
-#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 
 int main(){
    int ncases;
@@ -52,7 +50,7 @@ int main(){
             int x, y;
             x = i;
             y = j;
-            while(true){
+            while(1){
                if(x >= 1 && input[m][x-1][y] == input[m][x][y]+1){
                    num++;
                   x = x-1;
@@ -85,6 +83,5 @@ int main(){
       printf("Case #%d: %d %d\n",(i + 1), output[i][0], output[i][1]);
    }
    printf("\n");
-   system("pause");
    return 0;
 }
